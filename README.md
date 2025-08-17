@@ -164,14 +164,13 @@ These ideas can further improve reliability, scalability, and operational effici
 
 ## 🔧 Plan A: Steps to Build, Configure, and Run the Project Locally
 
-Install Node.js and MongoDB on your local computer based on your operating system. For detailed instructions:
+Install Node.js and MongoDB on your local computer. For detailed instructions:
 
-- **Windows**: Download the installers from the [Node.js](https://nodejs.org/) and [MongoDB](https://www.mongodb.com/try/download/community) websites.
-- **MacOS**: Use a package manager like Homebrew:
-  ```bash
-  brew install node mongodb-community
-  ```
-- **Linux**: Install using your distribution's package manager or download directly from the official sites.
+- **For Windows, MacOS, and Linux**:
+  - To install Node.js, follow the instructions at [https://nodejs.org/en/download](https://nodejs.org/en/download).
+  - To install MongoDB, follow the instructions at [https://www.mongodb.com/docs/manual/installation/](https://www.mongodb.com/docs/manual/installation/).
+
+  Please make sure to select the appropriate instructions for your specific operating system.
 
 ### Step 1: Install Dependencies
 
@@ -203,7 +202,19 @@ If you want to seed the MongoDB database with initial data, run the following co
 npm --prefix ./server run seed:db admin@rmit.edu.vn mypassword
 ```
 
+<p align="center">
+    <img src="setup_screenshots/successful_seed_terminal.png" width=900>
+</p>
+
 [Optional] You can use MongoDB Compass to explore the database data by connecting to it using the MongoDB URI.
+
+<p align="center">
+    <img src="setup_screenshots/mongodb_compass_connect_localhost_database.png" width=900>
+</p>
+
+<p align="center">
+    <img src="setup_screenshots/mongodb_compass_browsing_data.png" width=900>
+</p>
 
 
 
@@ -228,7 +239,7 @@ The website should now be accessible at:
 http://0.0.0.0:8080 or http://localhost:8080 
 ```
 <p align="center">
-    <img src="https://i.imgur.com/aDx33JU.png" width=900>
+    <img src="setup_screenshots/website_hompage.png" width=900>
 </p>
 
 After deploying the website, you can create your own account for a normal member to start browsing and buy products, leave reviews, or log in as an admin where you can have more administration rights.
@@ -420,6 +431,21 @@ The `client/` and `server/` directories are isolated, promoting independent deve
 - Ensure that MongoDB is running locally or that your MongoDB Atlas cluster is properly configured.
 - The client communicates with the server via the `/api` endpoint.
 - Make sure the `.env` files are properly set up for both the client and server.
+
+## 📸 Screenshots
+
+<p align="center">
+    <img src="setup_screenshots/website_hompage.png" width=900>
+</p>
+<p align="center">
+    <img src="setup_screenshots/website_signup_page.png" width=900>
+</p>
+<p align="center">
+    <img src="setup_screenshots/website_store_page.png" width=900>
+</p>
+<p align="center">
+    <img src="setup_screenshots/website_user_profile_dashboard.png" width=900>
+</p>
 
 ## 🏆 Author
 - Tom Huynh - tomhuynhsg@gmail.com
