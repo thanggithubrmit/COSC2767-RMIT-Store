@@ -187,6 +187,69 @@ npm -v
 mongod --version
 ```
 
+Here are some commands you can run to check if MongoDB is currently running after installing it, depending on your operating system:
+
+🔹 **Windows**
+
+Open Command Prompt (cmd) or PowerShell and run:
+```bash
+sc query MongoDB
+```
+
+If MongoDB is running as a service, you’ll see `STATE: RUNNING`.
+If it’s not running, you’ll see `STOPPED`.
+
+Alternatively, you can check processes:
+```bash
+tasklist /FI "IMAGENAME eq mongod.exe"
+```
+
+If you see `mongod.exe`, MongoDB is running.
+
+🔹 **macOS**
+
+Open Terminal and run:
+```bash
+brew services list | grep mongodb
+```
+
+If you installed via Homebrew, you’ll see `started mongodb-community@<version>`.
+
+If not using Homebrew, you can check with:
+```bash
+ps aux | grep mongod
+```
+
+If you see a `mongod` process (not just the grep one), MongoDB is running.
+
+🔹 **Linux (Ubuntu / Debian / CentOS / etc.)**
+
+Run:
+```bash
+systemctl status mongod
+```
+
+If MongoDB is running, you’ll see `Active: active (running)`.
+
+For systems without `systemd`, you can also try:
+```bash
+service mongod status
+```
+
+Or check processes:
+```bash
+ps aux | grep mongod
+```
+
+✅ **Universal check on all OS**
+
+If you want a quick test across platforms, just try connecting with the MongoDB shell:
+```bash
+mongosh
+```
+
+If it connects successfully, MongoDB is running.
+
 ### Step 1: Install Dependencies
 
 At the root of the project, install all dependencies:
