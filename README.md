@@ -317,7 +317,7 @@ npm run dev
    ```bash
    npm install
    ```
-   For the free-tier EC2 instance, it should take less than 2 minutes to build. If the build process (npm install) is slow for you, consider temporarily upgrading to a higher-tier EC2 instance (e.g., 2 vCPU and 4 GB RAM) to speed up the initial setup. Once completed, you can downgrade to a free-tier instance to save costs.
+   For the free-tier EC2 instance like t3.micro (2 vGPU & 1 GB Memory), it should take less than 2 minutes to build. If the build process (npm install) is slow for you, consider temporarily upgrading to a higher-tier EC2 instance t3.medium (e.g., 2 vCPU and 4 GB RAM) to speed up the initial setup. Once completed, you can downgrade to a free-tier instance to save costs. Personally, I'm happy with the free-tier t3.small (2 vGPU & 2 GB Memory) as the performance is acceptable!
    
 ### Step 5: Configure Environment Variables
 
