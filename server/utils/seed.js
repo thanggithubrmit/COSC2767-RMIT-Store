@@ -18,8 +18,8 @@ const NUM_PRODUCTS = 60;
 const NUM_BRANDS = 15;
 const NUM_CATEGORIES = 15;
 
-const USE_FAKER_IMAGE = true; // Set to false to use predefined images
-const NUM_PREDEFINED_IMAGES = 11; // Number of predefined images
+const USE_FAKER_IMAGE = false; // Set to false to use predefined images
+const NUM_PREDEFINED_IMAGES = 47; // Number of predefined images
 
 const seedDB = async () => {
   try {
