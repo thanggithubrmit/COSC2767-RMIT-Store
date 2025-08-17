@@ -13,6 +13,7 @@ import actions from '../../actions';
 import banners from './banners.json';
 import CarouselSlider from '../../components/Common/CarouselSlider';
 import { responsiveOneItemCarousel } from '../../components/Common/CarouselSlider/utils';
+import CustomContent from '../../components/Common/CustomContent';
 
 class Homepage extends React.PureComponent {
   render() {
@@ -36,6 +37,7 @@ class Homepage extends React.PureComponent {
             </div>
           </Col>
         </Row>
+        <CustomContent />
       </div>
     );
   }
