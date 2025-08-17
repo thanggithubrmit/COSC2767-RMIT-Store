@@ -164,6 +164,8 @@ These ideas can further improve reliability, scalability, and operational effici
 
 ## 🔧 Plan A: Steps to Build, Configure, and Run the Project Locally
 
+### Step 0: Install and Verify Node.js and MongoDB
+
 Install Node.js and MongoDB on your local computer. For detailed instructions:
 
 - **For Windows, MacOS, and Linux**:
@@ -171,6 +173,19 @@ Install Node.js and MongoDB on your local computer. For detailed instructions:
   - To install MongoDB, follow the instructions at [https://www.mongodb.com/docs/manual/installation/](https://www.mongodb.com/docs/manual/installation/).
 
   Please make sure to select the appropriate instructions for your specific operating system.
+
+After installation, verify that Node.js and MongoDB are installed correctly by running the following commands in your terminal:
+
+```bash
+# Verify Node.js installation
+node -v
+
+# Verify npm installation
+npm -v
+
+# Verify MongoDB installation
+mongod --version
+```
 
 ### Step 1: Install Dependencies
 
