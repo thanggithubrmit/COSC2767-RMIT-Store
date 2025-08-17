@@ -474,18 +474,30 @@ The frontend should now be accessible at `http://<your-ec2-public-ip>:8080`, and
 
 ### [Optional] Step 9: Connect to MongoDB from Your Local Machine
 
-If you want to manage your EC2-hosted MongoDB database using a local tool like MongoDB Compass, you need to allow remote connections.
+If you want to manage your EC2-hosted MongoDB database using a local tool like MongoDB Compass, you need to allow remote connections. By default, MongoDB on EC2 is configured for security to only accept connections from the machine itself.
 
-1.  **Edit the MongoDB Configuration File:**
+1.  **Check the Current MongoDB Network Status:**
 
-    Open the `mongod.conf` file to change the network binding:
+    Before making changes, check which network interface MongoDB is listening on. Run the following command in your EC2 terminal:
+    ```bash
+    sudo ss -tulpn | grep 27017
+    ```
+    The output will look like this:
+    ```
+    tcp   LISTEN 0      4096                         127.0.0.1:27017      0.0.0.0:*    users:(("mongod",pid=25678,fd=9))
+    ```
+    This output shows that `mongod` is listening only on `127.0.0.1:27017`. This means it will only accept connections originating from within the EC2 instance (`localhost`). Any external connection attempt, like from MongoDB Compass on your laptop, will be refused.
+
+2.  **Edit the MongoDB Configuration File:**
+
+    To allow remote connections, you need to change this setting. Open the `mongod.conf` file:
     ```bash
     sudo nano /etc/mongod.conf
     ```
 
-2.  **Update the `bindIp` Address:**
+3.  **Update the `bindIp` Address:**
 
-    Locate the `net` section and change `bindIp` from `127.0.0.1` to `0.0.0.0`. This allows MongoDB to listen for connections on all network interfaces.
+    Locate the `net` section and change `bindIp` from `127.0.0.1` to `0.0.0.0`.
 
     *From:*
     ```yaml
@@ -501,12 +513,24 @@ If you want to manage your EC2-hosted MongoDB database using a local tool like M
       bindIp: 0.0.0.0
     ```
 
-3.  **Restart MongoDB:**
+4.  **Restart MongoDB:**
 
     Apply the changes by restarting the MongoDB service:
     ```bash
     sudo systemctl restart mongod
     ```
+
+5.  **Verify the New Network Status:**
+
+    Run the check command again:
+    ```bash
+    sudo ss -tulpn | grep 27017
+    ```
+    The output should now show that MongoDB is listening on all network interfaces (`0.0.0.0`):
+    ```
+    tcp   LISTEN 0      4096                           0.0.0.0:27017      0.0.0.0:*    users:(("mongod",pid=29413,fd=9))
+    ```
+    This confirms that MongoDB will now accept connections from external sources.
 
 > **⚠️ Important Security Warning:** Binding MongoDB to `0.0.0.0` makes your database accessible from the entire internet. To protect your data, you **must** restrict access in your EC2 Security Group.
 >
@@ -514,7 +538,11 @@ If you want to manage your EC2-hosted MongoDB database using a local tool like M
 > -   Find the inbound rule for port **27017**.
 > -   Change the **Source** from `Anywhere` (`0.0.0.0/0`) to **`My IP`**. This ensures only your computer can connect to the database.
 
-After these steps, you can connect to your database using the connection string: `mongodb://<your-ec2-public-ip>:27017/rmit_database`.
+After these steps, you can connect to your database using the connection string: `mongodb://<your-ec2-public-ip>:27017/`.
+
+<p align="center">
+    <img src="setup_screenshots/mongodb_compass_connect_remote_ec2_database.png" width=900>
+</p>
 
 ---
 
@@ -549,7 +577,7 @@ BASE_API_URL=api
 
 **AWS EC2 Example (Single Instance Deployment):**
 ```env
-PORT=3.000
+PORT=3000
 MONGO_URI=mongodb://localhost:27017/rmit_database # Use localhost for same-machine DB connection
 JWT_SECRET=my_secret_string
 CLIENT_URL=http://<your-ec2-public-ip>:8080
@@ -557,7 +585,7 @@ BASE_API_URL=api
 ```
 > **💡 Important Note on `MONGO_URI`**: When your server and MongoDB are on the same EC2 instance, always use `localhost` (or `127.0.0.1`) for the `MONGO_URI`. This ensures a direct, secure, and fast internal connection. Using the public IP would force an unnecessary and often blocked external connection back to the same machine.
 
-**Important:** Replace `<your-ec2-public-ip>` with your actual EC2 instance's public IP. You can also adjust the value "0.0.0.0" to match the specific public IP addresses required for your pipeline setup.
+**Important:** Replace `<your-ec2-public-ip>` with your actual EC2 instance's public IP address. The value `0.0.0.0` is a wildcard that means "listen on all available network interfaces," which is useful in environments like Docker or when you're unsure which IP will be assigned.
 
 ## 🌐 Configuring Webpack Dev Server
 
