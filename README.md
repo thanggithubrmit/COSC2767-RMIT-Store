@@ -634,6 +634,12 @@ The `client/` and `server/` directories are isolated, promoting independent deve
 <p align="center">
     <img src="setup_screenshots/website_user_profile_dashboard.png" width=900>
 </p>
+<p align="center">
+    <img src="setup_screenshots/website_admin_products_page.png" width=900>
+</p>
+<p align="center">
+    <img src="setup_screenshots/website_order_page.png" width=900>
+</p>
 
 ## 🏆 Author
 - Tom Huynh - tomhuynhsg@gmail.com
