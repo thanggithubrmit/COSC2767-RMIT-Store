@@ -474,7 +474,7 @@ npm run dev
 
 The frontend should now be accessible at `http://<your-ec2-public-ip>:8080`, and the frontend and backend should communicate properly.
 
-### [Optional] Step 9: Connect to MongoDB from Your Local Machine
+### [Optional] Step 9: Configure MongoDB for Remote Connections (e.g., from MongoDB Compass)
 
 If you want to manage your EC2-hosted MongoDB database using a local tool like MongoDB Compass, you need to allow remote connections. By default, MongoDB on EC2 is configured for security to only accept connections from the machine itself.
 
