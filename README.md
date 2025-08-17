@@ -284,7 +284,7 @@ npm --prefix ./server run seed:db admin@rmit.edu.vn mypassword
     <img src="setup_screenshots/successful_seed_terminal.png" width=900>
 </p>
 
-[Optional] You can use MongoDB Compass to explore the database data by connecting to it using the MongoDB URI.
+[Optional] You can use MongoDB Compass to explore the database data by connecting to it using the MongoDB URI. When connecting to a local MongoDB database, the default URI is `mongodb://localhost:27017`.
 
 <p align="center">
     <img src="setup_screenshots/mongodb_compass_connect_localhost_database.png" width=900>
@@ -370,30 +370,59 @@ npm run dev
 
 ### Step 3: Install MongoDB
 
-1. Add the MongoDB repository:
-   ```bash
-   sudo tee /etc/yum.repos.d/mongodb-org-6.0.repo <<EOF
-   [mongodb-org-6.0]
-   name=MongoDB Repository
-   baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/6.0/x86_64/
-   gpgcheck=1
-   enabled=1
-   gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
-   EOF
-   ```
-2. Install MongoDB:
-   ```bash
-   sudo yum install -y mongodb-org
-   ```
-3. Start MongoDB:
-   ```bash
-   sudo systemctl start mongod
-   sudo systemctl enable mongod
-   ```
-4. Verify the installation:
-   ```bash
-   mongod --version
-   ```
+1.  **Configure the repository.**
+
+    Create a `/etc/yum.repos.d/mongodb-org-8.0.repo` file so that you can install MongoDB directly using `yum`:
+
+    ```bash
+    [mongodb-org-8.0]
+    name=MongoDB Repository
+    baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/8.0/x86_64/
+    gpgcheck=1
+    enabled=1
+    gpgkey=https://pgp.mongodb.com/server-8.0.asc
+    ```
+
+2.  **Install MongoDB Community Server.**
+
+    To install the latest stable version of MongoDB, run the following command:
+
+    ```bash
+    sudo yum install -y mongodb-org
+    ```
+
+3.  **Start MongoDB.**
+
+    You can start the `mongod` process by issuing the following command:
+
+    ```bash
+    sudo systemctl start mongod
+    ```
+
+    If you receive an error similar to the following when starting `mongod`:
+    `Failed to start mongod.service: Unit mongod.service not found.`
+
+    Run the following command first:
+
+    ```bash
+    sudo systemctl daemon-reload
+    ```
+
+    Then run the start command above again.
+
+4.  **Verify that MongoDB has started successfully.**
+
+    You can verify that the `mongod` process has started successfully by issuing the following command:
+
+    ```bash
+    sudo systemctl status mongod
+    ```
+
+    You can optionally ensure that MongoDB will start following a system reboot by issuing the following command:
+
+    ```bash
+    sudo systemctl enable mongod
+    ```
 
 ### Step 4: Clone the Project and Set It Up
 
