@@ -284,6 +284,8 @@ npm --prefix ./server run seed:db admin@rmit.edu.vn mypassword
     <img src="setup_screenshots/successful_seed_terminal.png" width=900>
 </p>
 
+> **Disclaimer:** The product data (including names, descriptions, and images) is generated using the [`@faker-js/faker`](https://fakerjs.dev/) library for demonstration purposes only. It does not represent real products from the actual RMIT Store.
+
 [Optional] You can use MongoDB Compass to explore the database data by connecting to it using the MongoDB URI. When connecting to a local MongoDB database, the default URI is `mongodb://localhost:27017`.
 
 <p align="center">
