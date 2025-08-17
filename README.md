@@ -447,14 +447,22 @@ npm run dev
 
 This step ensures that the frontend can communicate with the backend hosted on your EC2 instance. By updating the `API_URL` to the public IP of your EC2 instance, the client application will correctly send API requests to the server. 
 
-### Step 6: Check Security Group Settings
+### Step 6: Populate the Database
+
+If you want to seed the MongoDB database with initial data, run the following command. Replace `admin@rmit.edu.vn` and `mypassword` with your desired admin credentials:
+
+```bash
+npm --prefix ./server run seed:db admin@rmit.edu.vn mypassword
+```
+
+### Step 7: Check Security Group Settings
 
 1. Ensure that the security group associated with your EC2 instance allows inbound traffic on:
    - Port 3000 (backend)
    - Port 8080 (frontend)
 2. Verify that the environment variables are correctly configured as per the previous step.
 
-### Step 7: Start the Project
+### Step 8: Start the Project
 
 Run the project using the standard command:
 
