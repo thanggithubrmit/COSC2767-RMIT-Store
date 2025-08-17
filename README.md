@@ -472,6 +472,50 @@ npm run dev
 
 The frontend should now be accessible at `http://<your-ec2-public-ip>:8080`, and the frontend and backend should communicate properly.
 
+### [Optional] Step 9: Connect to MongoDB from Your Local Machine
+
+If you want to manage your EC2-hosted MongoDB database using a local tool like MongoDB Compass, you need to allow remote connections.
+
+1.  **Edit the MongoDB Configuration File:**
+
+    Open the `mongod.conf` file to change the network binding:
+    ```bash
+    sudo nano /etc/mongod.conf
+    ```
+
+2.  **Update the `bindIp` Address:**
+
+    Locate the `net` section and change `bindIp` from `127.0.0.1` to `0.0.0.0`. This allows MongoDB to listen for connections on all network interfaces.
+
+    *From:*
+    ```yaml
+    net:
+      port: 27017
+      bindIp: 127.0.0.1
+    ```
+
+    *To:*
+    ```yaml
+    net:
+      port: 27017
+      bindIp: 0.0.0.0
+    ```
+
+3.  **Restart MongoDB:**
+
+    Apply the changes by restarting the MongoDB service:
+    ```bash
+    sudo systemctl restart mongod
+    ```
+
+> **⚠️ Important Security Warning:** Binding MongoDB to `0.0.0.0` makes your database accessible from the entire internet. To protect your data, you **must** restrict access in your EC2 Security Group.
+>
+> -   Go to your EC2 instance's Security Group settings.
+> -   Find the inbound rule for port **27017**.
+> -   Change the **Source** from `Anywhere` (`0.0.0.0/0`) to **`My IP`**. This ensures only your computer can connect to the database.
+
+After these steps, you can connect to your database using the connection string: `mongodb://<your-ec2-public-ip>:27017/rmit_database`.
+
 ---
 
 ## 🌱 Setting Up Environment Variables
@@ -503,14 +547,15 @@ CLIENT_URL=http://localhost:8080
 BASE_API_URL=api
 ```
 
-**AWS EC2 Example (adjust as needed):**
-```
-PORT=3000
-MONGO_URI=mongodb://0.0.0.0:27017/rmit_database  # or MongoDB Atlas URI if using cloud DB
+**AWS EC2 Example (Single Instance Deployment):**
+```env
+PORT=3.000
+MONGO_URI=mongodb://localhost:27017/rmit_database # Use localhost for same-machine DB connection
 JWT_SECRET=my_secret_string
-CLIENT_URL=http://0.0.0.0:8080
+CLIENT_URL=http://<your-ec2-public-ip>:8080
 BASE_API_URL=api
 ```
+> **💡 Important Note on `MONGO_URI`**: When your server and MongoDB are on the same EC2 instance, always use `localhost` (or `127.0.0.1`) for the `MONGO_URI`. This ensures a direct, secure, and fast internal connection. Using the public IP would force an unnecessary and often blocked external connection back to the same machine.
 
 **Important:** Replace `<your-ec2-public-ip>` with your actual EC2 instance's public IP. You can also adjust the value "0.0.0.0" to match the specific public IP addresses required for your pipeline setup.
 
