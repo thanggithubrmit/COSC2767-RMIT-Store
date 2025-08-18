@@ -346,7 +346,7 @@ npm run dev
 1. Log in to the AWS Management Console.
 2. Launch a new EC2 instance with the following specifications:
    - Choose the **Amazon Linux 2023 AMI**.
-   - Select an instance type (e.g., t2.micro for free-tier eligibility). You might consider temporarily upgrading to a more powerful tier, such as t2.medium, if the free-tier instance is too slow to build the project initially. FYI, the free-tier t2.micro takes around  2 minutes usually to build this project.
+   - Select an instance type (e.g., t3.micro for free-tier eligibility). You might consider temporarily upgrading to a more powerful tier, such as t3.medium or t3.small, if the free-tier instance is too slow to build the project initially. The build process on a free-tier instance should take less than 2 minutes.
    - Configure security groups to allow inbound traffic on ports **3000** (backend) and **8080** (frontend).
 
 ### Step 2: Install Node.js and npm
