@@ -116,11 +116,11 @@ README.md               # Documentation and setup instructions.
 ### Plan A: Deploy Locally
 
 **Window, MacOS, or Linux**:
-   - Follow the instructions in the "Steps to Build, Configure, and Run the Project Locally" section.
+   - Follow the instructions in the below "Plan A: Steps to Build, Configure, and Run the Project Locally" section.
 
 ### Plan B: Deploy on AWS EC2 (Single Instance)
 
-1. Follow the instructions in the "Configuring and Deploying the Project on AWS EC2" section to deploy both the client and server on a single EC2 instance.
+1. Follow the instructions in the below "Plan B: Configuring and Deploying the Project on AWS EC2" section to deploy both the client and server on a single EC2 instance.
 
 ### Plan C: Deploy on AWS EC2 (Separate Instances)
 
@@ -371,6 +371,8 @@ npm run dev
    ```
 
 ### Step 3: Install MongoDB
+
+For more detailed instructions, you can refer to the official MongoDB documentation on [installing MongoDB on Amazon Linux](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-amazon/).
 
 1.  **Configure the repository.**
 
