@@ -115,7 +115,7 @@ README.md               # Documentation and setup instructions.
 
 ### Plan A: Deploy Locally
 
-**Window, MacOS, or Linux**:
+**🪟 Window, 🍏 MacOS, or 🐧 Linux**:
    - Follow the instructions in the below "Plan A: Steps to Build, Configure, and Run the Project Locally" section.
 
 ### Plan B: Deploy on AWS EC2 (Single Instance)
@@ -168,7 +168,7 @@ These ideas can further improve reliability, scalability, and operational effici
 
 Install Node.js and MongoDB on your local computer. For detailed instructions:
 
-- **For Windows, MacOS, and Linux**:
+- **For 🪟 Windows, 🍏 MacOS, and 🐧 Linux**:
   - To install Node.js, follow the instructions at [https://nodejs.org/en/download](https://nodejs.org/en/download).
   - To install MongoDB, follow the instructions at [https://www.mongodb.com/docs/manual/installation/](https://www.mongodb.com/docs/manual/installation/).
 
@@ -189,7 +189,7 @@ mongod --version
 
 Here are some commands you can run to check if MongoDB is currently running after installing it, depending on your operating system:
 
-🔹 **Windows**
+🔹 **🪟 Windows**
 
 Open Command Prompt (cmd) or PowerShell and run:
 ```bash
@@ -206,7 +206,7 @@ tasklist /FI "IMAGENAME eq mongod.exe"
 
 If you see `mongod.exe`, MongoDB is running.
 
-🔹 **macOS**
+🔹 **🍏 macOS**
 
 Open Terminal and run:
 ```bash
@@ -222,7 +222,7 @@ ps aux | grep mongod
 
 If you see a `mongod` process (not just the grep one), MongoDB is running.
 
-🔹 **Linux (Ubuntu / Debian / CentOS / etc.)**
+🔹 **🐧 Linux (Ubuntu / Debian / CentOS / etc.)**
 
 Run:
 ```bash
