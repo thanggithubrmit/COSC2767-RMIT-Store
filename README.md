@@ -351,6 +351,8 @@ npm run dev
 
 ### Step 2: Install Node.js and npm
 
+For more detailed instructions, you can refer to the official Node.js documentation at [https://nodejs.org/en/download](https://nodejs.org/en/download). On that page, select the instructions to install Node.js v22.x.x (LTS) for Linux using a node version manager (fnm).
+
 1. Connect to your EC2 instance via SSH.
 2. Install Node.js and npm:
    ```bash
